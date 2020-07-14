@@ -1,13 +1,16 @@
 package com.example.mygps
 
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.EditText
 import android.widget.ListView
 import android.widget.SimpleAdapter
+import java.net.URLEncoder
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,6 +47,25 @@ class MainActivity : AppCompatActivity() {
         }
         //親クラスの同名メソッドを呼び出し、その戻り値を返却。
         return super.onOptionsItemSelected(item)
+    }
+
+    /**
+     * 地図検索ボタンがタップされたときの処理メソッド。
+     */
+    fun onMapSearchButtonClick(view: View) {
+        //入力欄に入力されたキーワード文字列を取得。
+        val etSearchWord = findViewById<EditText>(R.id.etSearchWord)
+        var searchWord = etSearchWord.text.toString()
+        //入力されたキーワードをURLエンコード。
+        searchWord = URLEncoder.encode(searchWord, "UTF-8")
+        //マップアプリと連携するURI文字列を生成。
+        val uriStr = "geo:0,0?q=${searchWord}"
+        //URI文字列からURIオブジェクトを生成。
+        val uri = Uri.parse(uriStr)
+        //Intentオブジェクトを生成。
+        val intent = Intent(Intent.ACTION_VIEW, uri)
+        //アクティビティを起動。
+        startActivity(intent)
     }
 
 }
