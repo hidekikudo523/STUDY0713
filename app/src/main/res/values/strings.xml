@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">アンドロイド課題アプリ</string>
+    <string name="menu_present_location">現在地</string>
+    <string name="menu_exit">終了</string>
+    <string name="tv_msg">キーワードを入力</string>
+    <string name="bt_map_search">MAP表示</string>
+    <string name="tv_current_title">履歴</string>
+    <string name="tv_latitude_title">緯度</string>
+    <string name="tv_longitude_title">経度</string>
+</resources>
